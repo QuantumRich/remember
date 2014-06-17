@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 
+import play.Play;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -37,8 +38,8 @@ public class Application extends Controller {
 	
 	private static void saveFile (File file, String fileName) 
 	{
-		String myUploadFolder = "D:\\";
-        file.renameTo(new File(myUploadFolder, fileName));
+		String uploadFolder = Play.application().configuration().getString("uploadFolder");
+        file.renameTo(new File(uploadFolder, fileName));
 	}
 
 }
