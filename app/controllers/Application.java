@@ -30,7 +30,7 @@ public class Application extends Controller {
 		else 
 		{
 			flash("error", "Missing file");
-			return ok();
+			return notFound();
 		}
 
 	}
