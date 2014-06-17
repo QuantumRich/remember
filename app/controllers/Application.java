@@ -33,9 +33,6 @@ public class Application extends Controller {
 			flash("error", "Missing file");
 			return notFound();
 		}
-		
-		
-
 	}
 	
 	private static void saveFile (File file, String fileName) 
