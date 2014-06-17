@@ -1,3 +1,11 @@
+CREATE TABLE event
+(
+	event_code int PRIMARY KEY,
+	event_name varchar,
+	event_date timestamp,
+	tags varchar
+);
+
 CREATE TABLE picture
 (
 	filename varchar PRIMARY KEY,
@@ -10,12 +18,4 @@ CREATE TABLE picture
 	tags varchar,
 	CONSTRAINT event_code_fk FOREIGN KEY (event_code) 
 		REFERENCES event(event_code)
-);
-
-CREATE TABLE event
-(
-	event_code int PRIMARY KEY,
-	event_name varchar,
-	event_date timestamp,
-	tags varchar
 );
