@@ -46,8 +46,8 @@ public class Application extends Controller {
 	private static void saveFile (File file, String fileName) 
 	{
 		
-		String myUploadPath = "D:\\";
-        file.renameTo(new File(myUploadPath, fileName));
+		String myUploadFolder = "D:\\";
+        file.renameTo(new File(myUploadFolder, fileName));
 /*		FileInputStream from = null; // Stream to read from source
 	    FileOutputStream to = null; // Stream to write to destination
 	    try {
