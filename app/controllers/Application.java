@@ -3,18 +3,16 @@ package controllers;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
 import play.Play;
+import play.db.DB;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import views.html.index;
-
-import play.db.*;
 
 public class Application extends Controller {
 
