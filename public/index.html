@@ -46,26 +46,6 @@
 						</ul>
 					</div>
 				</div>
-				<!-- Modal -->
-				<div class="modal fade" id="createModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-							</div>
-							<div class="modal-body">...</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- "Create new event" form -->
 				<div class="row">
 					<div class="col-sm-1"></div>
@@ -83,7 +63,7 @@
 							</div>
 							<div class="form-group">
 								<div class='input-group date' id='datetimepicker1'>
-									<input type='text' class="form-control" placeholder="Date of Event" /> <span
+									<input id="InputDate" type='text' class="form-control" placeholder="Date of Event" /> <span
 										class="input-group-addon"><span
 										class="glyphicon glyphicon-calendar"></span> </span>
 								</div>
@@ -99,7 +79,7 @@
 								<p class="help-block">Choose a cover photo for the event. </p>
 							</div> -->
 						</form>
-						<button class="btn btn-default" data-toggle="modal"
+						<button id="createEventButton" class="btn btn-default" data-toggle="modal"
 							data-target="#createModal">Create Event</button>
 					</div>
 					<div class="col-sm-1"></div>
@@ -141,13 +121,15 @@
 	
 	<!-- Modal -->
 	<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog main-box">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Modal title</h4>
+					<h4 class="modal-title">Event Created!</h4>
 				</div>
-				<div class="modal-body">...</div>
+				<div class="modal-body">
+					<input id="event-code-url" type='text'/>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary">Save changes</button>

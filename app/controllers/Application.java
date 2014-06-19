@@ -4,6 +4,10 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -42,12 +46,36 @@ public class Application extends Controller {
 		}
 	}
 	
-	public static Result createEvent()
+	public static Result createEvent() throws ParseException
 	{
 		Map<String, String[]> formData = request().body().asFormUrlEncoded();
-		System.out.print("TESSSSSTTTT");
-		System.out.print(formData.keySet().size());
-		return ok();
+		String eventTitle = formData.get("eventTitle")[0];
+		String eventDesc = formData.get("eventDesc")[0];
+		String eventDateString = formData.get("eventDate")[0];
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Date eventDate = df.parse(eventDateString);
+		//System.out.print(value);
+		Connection connection = DB.getConnection();
+		Long eventCode = System.currentTimeMillis();
+		
+		try {
+		String stmt = "INSERT INTO event (event_code, event_name, event_desc, event_date) VALUES (?,?,?,?)";
+		PreparedStatement prepStmt = connection.prepareStatement(stmt);
+		prepStmt.setLong(1, eventCode);
+		System.out.println(eventCode);
+		prepStmt.setString(2, eventTitle);
+		System.out.println(eventTitle);
+		prepStmt.setString(3, eventDesc);
+		System.out.println(eventDesc);
+		prepStmt.setDate(4, new java.sql.Date(eventDate.getTime()));
+		//System.out.println(eventCode.toString());
+	    
+			prepStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ok(eventCode + "");
 		
 	}
 	
@@ -64,5 +92,6 @@ public class Application extends Controller {
 		String uploadFolder = Play.application().configuration().getString("uploadFolder");
         file.renameTo(new File(uploadFolder, fileName));
 	}
+	
 
 }

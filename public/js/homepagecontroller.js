@@ -7,14 +7,21 @@ $(function() {
 		pickTime : false
 	});
 
-	$.ajax({
-		type : "POST",
-		url : "/event",
-		data : {
-			param1: "Warriors vs. Clippers"
-		},
-		success : function() {
-			
-		}
+	$("#createEventButton").click(function()
+	{
+		$.ajax({
+			type : "POST",
+			url : "/event",
+			data : {
+				eventTitle : $("#InputEventTitle").val(),
+				eventDesc : $("#InputEventDesc").val(),
+				eventDate : $("#InputDate").val()
+			},
+			success : function(eventCode) {
+				$("#event-code-url").val(eventCode);
+			}
+		});
 	});
+	
+
 });
