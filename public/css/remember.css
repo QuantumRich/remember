@@ -1,3 +1,7 @@
 .modal{
    overflow: hidden;
 }
+
+.datepicker {
+	color: #000;
+}
