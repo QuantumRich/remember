@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.UUID;
 
 import play.Play;
@@ -39,6 +40,15 @@ public class Application extends Controller {
 			flash("error", "Missing file");
 			return notFound();
 		}
+	}
+	
+	public static Result createEvent()
+	{
+		Map<String, String[]> formData = request().body().asFormUrlEncoded();
+		System.out.print("TESSSSSTTTT");
+		System.out.print(formData.keySet().size());
+		return ok();
+		
 	}
 	
 	private static void saveFile (File file, String origFileName) throws SQLException 
