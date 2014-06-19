@@ -1,6 +1,7 @@
 $(function() {
 	$('#datetimepicker1').datetimepicker({
 		language: 'en',
-		format: 'MM/DD/YYYY'
+		format: 'MM/DD/YYYY',
+		pickTime: false
 	});
 });
