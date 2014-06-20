@@ -13,6 +13,6 @@ GET		/api/event/:code			controllers.Application.getEvent(code)
 
 GET     /*file              		controllers.Assets.at(path="/public", file)
 
-POST	/upload						controllers.Application.upload()
+POST	/api/upload/:code			controllers.Application.upload(code)
 
 POST	/event						controllers.Application.createEvent()

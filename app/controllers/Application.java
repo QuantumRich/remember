@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,15 +31,16 @@ public class Application extends Controller {
 		return ok(index.render("Your new application is ready."));
 	}
 
-	public static Result upload() throws SQLException {
+	public static Result upload(String code) throws SQLException {
 		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart picture = body.getFile("picture"); //
+		FilePart picture = body.getFile("picture");
+		
 		if (picture != null) {
 			String fileName = picture.getFilename();
 			String contentType = picture.getContentType();
 			File file = picture.getFile();
 			System.out.println("File Name: " + fileName + ", " + contentType);
-			saveFile(file, fileName);
+			saveFile(file, fileName, code);
 			return ok("File uploaded");
 		} else {
 			flash("error", "Missing file");
@@ -82,29 +84,47 @@ public class Application extends Controller {
 
 	}
 
-	public static Result getEvent(String code) {
+	public static Result getEvent(String code) throws SQLException {
+		Connection connection = DB.getConnection();
+		String stmt = "SELECT * FROM EVENT WHERE EVENT_CODE = ?";
+		PreparedStatement prepStmt = connection.prepareStatement(stmt);
+		prepStmt.setString(1, code);
+		ResultSet r = prepStmt.executeQuery();
+		
 		EventDetails e = new EventDetails();
-		e.title = "Italy vs. Costa Rica";
-		e.description = code;
-		e.date = "04/05/12";
-		//TODO: Loop through pictures and add them to event
+		while (r.next()) 
+		{
+			e.title = r.getString("EVENT_NAME");
+			e.description = r.getString("EVENT_DESC");
+			e.date = r.getDate("EVENT_DATE").toString();
+		}
+		
+		stmt = "SELECT * FROM PICTURE WHERE EVENT_CODE = ?";
+		prepStmt = connection.prepareStatement(stmt);
+		prepStmt.setString(1, code);
+		r = prepStmt.executeQuery();
+		
 		ArrayList<Picture> pics = new ArrayList<>();
-		Picture p = new Picture();
-		p.url = "pic url";
-		pics.add(p);
+		while (r.next()) 
+		{
+			Picture p = new Picture();
+			p.url = "/database/"+r.getString("FILENAME");
+			pics.add(p);
+		}
+		
 		e.pics = pics;
 		return ok(Json.toJson(e));
 	}
 	
-	private static void saveFile(File file, String origFileName)
+	private static void saveFile(File file, String origFileName, String code)
 			throws SQLException {
 		Connection connection = DB.getConnection();
-		String fileName = UUID.randomUUID().toString(); // TODO: get file
-														// extension.
+		String fileName = UUID.randomUUID().toString()+"-"+origFileName; //TODO: check MIME type
 
-		String stmt = "INSERT INTO picture (filename) VALUES (?)";
+		String stmt = "INSERT INTO picture (filename,EVENT_CODE) VALUES (?,?)";
 		PreparedStatement prepStmt = connection.prepareStatement(stmt);
 		prepStmt.setString(1, fileName);
+		prepStmt.setLong(2, Long.parseLong(code));
 		prepStmt.execute();
 
 		String uploadFolder = Play.application().configuration()

@@ -12,7 +12,7 @@ DROP TABLE picture;
 CREATE TABLE picture
 (
 filename varchar PRIMARY KEY,
-event_code int,
+event_code bigint,
 original_filename varchar,
 date_taken timestamp,
 date_uploaded timestamp,
