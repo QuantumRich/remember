@@ -18,9 +18,15 @@ $(function() {
 				eventDate : $("#InputDate").val()
 			},
 			success : function(eventCode) {
-				$("#event-code-url").val(window.location.host + "/event/" + eventCode);
+				$("#event-code-url").val("http://" + window.location.host + "/event?code=" + eventCode);
 			}
 		});
+	});
+	
+	$("#goToEventButton").click(function()
+	{
+		var url = $("#event-code-url").val();
+		window.location.replace(url);
 	});
 	
 
