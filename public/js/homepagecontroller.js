@@ -18,7 +18,7 @@ $(function() {
 				eventDate : $("#InputDate").val()
 			},
 			success : function(eventCode) {
-				$("#event-code-url").val(eventCode);
+				$("#event-code-url").val(window.location.host + "/event/" + eventCode);
 			}
 		});
 	});

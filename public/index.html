@@ -54,18 +54,17 @@
 							<div class="form-group">
 								<label class="sr-only" for="InputEventTitle">Event Title</label>
 								<input type="text" class="form-control input-lg"
-									id="InputEventTitle" placeholder="Event Title">
+									id="InputEventTitle" placeholder="Event Title" value="Default Title">
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="InputEventDesc">Event Description</label> 
 								<input type="text" class="form-control input-md"
-									id="InputEventDesc" placeholder="Event Description">
+									id="InputEventDesc" placeholder="Event Description" value="Default Description">
 							</div>
 							<div class="form-group">
 								<div class='input-group date' id='datetimepicker1'>
-									<input id="InputDate" type='text' class="form-control" placeholder="Date of Event" /> <span
-										class="input-group-addon"><span
-										class="glyphicon glyphicon-calendar"></span> </span>
+									<input id="InputDate" type='text' class="form-control" placeholder="Date of Event" value="05/12/2013"/> 
+									<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 								</div>
 							</div>
 							<!--  <div class="form-group">
@@ -129,7 +128,9 @@
 				</div>
 				<div class="modal-body">
 					<p>Share this code to invite others to collaborate!</p>
-					<input id="event-code-url" type='text'/>
+					<div class="row">
+						<input id="event-code-url" type='text' class="col-md-12 input-lg " style="color:#000; text-align:center" disabled/>
+					</div>
 				</div>
 				<div class="modal-footer" style="border-top: 4px solid #e5e5e5;">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
