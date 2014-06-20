@@ -53,6 +53,5 @@ $(function() {
 			$("#titleInput").addClass("has-error")
 		}
 	})
-	
 
 });

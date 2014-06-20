@@ -6,12 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+import model.EventDetails;
+import model.Picture;
 import play.Play;
 import play.db.DB;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
@@ -78,6 +82,20 @@ public class Application extends Controller {
 
 	}
 
+	public static Result getEvent(String code) {
+		EventDetails e = new EventDetails();
+		e.title = "Italy vs. Costa Rica";
+		e.description = code;
+		e.date = "04/05/12";
+		//TODO: Loop through pictures and add them to event
+		ArrayList<Picture> pics = new ArrayList<>();
+		Picture p = new Picture();
+		p.url = "pic url";
+		pics.add(p);
+		e.pics = pics;
+		return ok(Json.toJson(e));
+	}
+	
 	private static void saveFile(File file, String origFileName)
 			throws SQLException {
 		Connection connection = DB.getConnection();
