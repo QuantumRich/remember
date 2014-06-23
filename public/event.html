@@ -8,7 +8,7 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="css/cover.css" rel="stylesheet">
+<!-- <link href="css/cover.css" rel="stylesheet"> -->
 <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="css/remember.css" rel="stylesheet">
 
@@ -17,10 +17,26 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/purl.js"></script>
+<script src="js/upload.js"></script>
 
 </head>
 
 <body>
+<form action="#" enctype="multipart/form-data" method="post">
+	<ul>
+		<li>
+			<label for="name">Name:</label>
+			<input type="text" name="name" id="name" multiple>
+		</li>
+
+		<li>
+			<label for="file_upload">File:</label>
+			<input type="file" name="file_upload" id="file_upload" multiple>
+		</li>
+
+		<li><input class="button green" type="submit" name="submit" value="Submit Content"></li>
+	</ul>
+</form>
 <script src="js/eventpagecontroller.js"></script>
 </body>
 </html>
