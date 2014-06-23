@@ -31,10 +31,10 @@ public class Application extends Controller {
 		return ok(index.render("Your new application is ready."));
 	}
 
-	public static Result upload() throws SQLException {
+	public static Result upload(String code) throws SQLException {
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart picture = body.getFile("picture");
-		String code = body.asFormUrlEncoded().get("code")[0];
+		//String code = body.asFormUrlEncoded().get("code")[0];
 		if (picture != null) {
 			String fileName = picture.getFilename();
 			String contentType = picture.getContentType();
