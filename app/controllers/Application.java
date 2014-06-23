@@ -129,7 +129,9 @@ public class Application extends Controller {
 		prepStmt.setString(1, fileName);
 		prepStmt.setLong(2, Long.parseLong(code));
 		prepStmt.execute();
-
+		
+		File directory = new File("public\\database");
+		directory.mkdir();
 		String uploadFolder = Play.application().configuration().getString("uploadFolder");
 		file.renameTo(new File(uploadFolder, fileName));
 	}
