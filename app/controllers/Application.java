@@ -31,17 +31,15 @@ public class Application extends Controller {
 		return ok(index.render("Your new application is ready."));
 	}
 
-	public static Result upload() throws SQLException {
+	public static Result upload(String code) throws SQLException {
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart picture = body.getFile("picture");
-		String code = body.asFormUrlEncoded().get("code")[0];
+		
 		if (picture != null) {
 			String fileName = picture.getFilename();
 			String contentType = picture.getContentType();
 			if(!contentType.startsWith("image/"))
-			{
-				return badRequest("Error: File is not an image.");
-			}
+				return badRequest("Error: File must be an image.");
 			File file = picture.getFile();
 			System.out.println("File Name: " + fileName + ", " + contentType);
 			saveFile(file, fileName, code);
@@ -108,7 +106,7 @@ public class Application extends Controller {
 		prepStmt.setString(1, code);
 		r = prepStmt.executeQuery();
 		
-		ArrayList<Picture> pics = new ArrayList<Picture>();
+		ArrayList<Picture> pics = new ArrayList<>();
 		while (r.next()) 
 		{
 			Picture p = new Picture();
@@ -120,10 +118,11 @@ public class Application extends Controller {
 		return ok(Json.toJson(e));
 	}
 	
-	private static void saveFile(File file, String origFileName, String code) //file, filename, code
+	private static void saveFile(File file, String origFileName, String code)
 			throws SQLException {
 		Connection connection = DB.getConnection();
-		String fileName = UUID.randomUUID().toString()+"-"+origFileName; 
+		String fileName = UUID.randomUUID().toString()+"-"+origFileName; //TODO: check MIME type
+
 		String stmt = "INSERT INTO picture (filename,EVENT_CODE) VALUES (?,?)";
 		PreparedStatement prepStmt = connection.prepareStatement(stmt);
 		prepStmt.setString(1, fileName);
