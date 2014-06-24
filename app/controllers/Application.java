@@ -33,23 +33,33 @@ public class Application extends Controller {
 
 	public static Result upload(String code) throws SQLException {
 		MultipartFormData body = request().body().asMultipartFormData();
-		FilePart picture = body.getFile("picture");
-		//String code = body.asFormUrlEncoded().get("code")[0];
-		if (picture != null) {
-			String fileName = picture.getFilename();
-			String contentType = picture.getContentType();
-			if(!contentType.startsWith("image/"))
+		for(int i=0; i!=-1 ;i++)
+		{
+			FilePart picture = body.getFile("picture" + i);
+			//String code = body.asFormUrlEncoded().get("code")[0];
+			if (picture != null) 
 			{
-				return badRequest("Error: File is not an image.");
+				String fileName = picture.getFilename();
+				String contentType = picture.getContentType();
+				if(contentType.startsWith("image/"))
+				{
+					File file = picture.getFile();
+					//System.out.println("File Name: " + fileName + ", " + contentType);
+					saveFile(file, fileName, code);	
+				}
+				else
+				{
+					//TODO Set flag that one or more of these files is not an image.
+					//return badRequest("Error: File is not an image.");
+				}
+
 			}
-			File file = picture.getFile();
-			//System.out.println("File Name: " + fileName + ", " + contentType);
-			saveFile(file, fileName, code);
-			return ok("File uploaded");
-		} else {
-			flash("error", "Missing file");
-			return notFound();
+			else
+			{
+				break;
+			}
 		}
+		return ok("File uploaded");			
 	}
 
 	public static Result createEvent() throws Exception {

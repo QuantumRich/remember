@@ -20,8 +20,10 @@ $(function() {
 		        var input = $(this).parents('.input-group').find(':text'),
 		            log = numFiles > 1 ? numFiles + ' files selected' : label;
 		        
+		        var stuff = $('.btn-file :file');
+		            
 	            $.each($('.btn-file :file')[0].files, function(i, file) {
-	            	data.append("picture", file);
+	            	data.append("picture" + i, file);
 	            });
 		            
 		        if( input.length ) {
@@ -30,7 +32,6 @@ $(function() {
 		        } else {
 		            if( log ) alert(log);
 		        }
-		        //TODO POST
 		        $.ajax({
 		        	  type: "POST",
 //		        	  contentType:'multipart/form-data',
