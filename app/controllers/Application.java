@@ -33,6 +33,7 @@ public class Application extends Controller {
 
 	public static Result upload(String code) throws SQLException {
 		MultipartFormData body = request().body().asMultipartFormData();
+		ArrayList<Picture> pics = new ArrayList<Picture>();
 		for(int i=0; i!=-1 ;i++)
 		{
 			FilePart picture = body.getFile("picture" + i);
@@ -45,7 +46,8 @@ public class Application extends Controller {
 				{
 					File file = picture.getFile();
 					//System.out.println("File Name: " + fileName + ", " + contentType);
-					saveFile(file, fileName, code);	
+					Picture p = saveFile(file, fileName, code);	
+					pics.add(p);
 				}
 				else
 				{
@@ -59,7 +61,7 @@ public class Application extends Controller {
 				break;
 			}
 		}
-		return ok("File uploaded");			
+		return ok(Json.toJson(pics));			
 	}
 
 	public static Result createEvent() throws Exception {
@@ -121,8 +123,11 @@ public class Application extends Controller {
 		ArrayList<Picture> pics = new ArrayList<Picture>();
 		while (r.next()) 
 		{
-			Picture p = new Picture();
-			p.url = "/database/"+r.getString("FILENAME");
+			Picture p = new Picture(
+					"/database/"+r.getString("FILENAME"), 
+					r.getString("FILENAME"), 
+					r.getString("CAPTION"),
+					r.getDate("DATE_UPLOADED"));
 			pics.add(p);
 		}
 		
@@ -130,20 +135,24 @@ public class Application extends Controller {
 		return ok(Json.toJson(e));
 	}
 	
-	private static void saveFile(File file, String origFileName, String code) //file, filename, code
+	private static Picture saveFile(File file, String origFileName, String code) //file, filename, code
 			throws SQLException {
 		Connection connection = DB.getConnection();
 		String fileName = UUID.randomUUID().toString()+"-"+origFileName; 
-		String stmt = "INSERT INTO picture (filename,EVENT_CODE) VALUES (?,?)";
+		java.sql.Date dateUploaded = new java.sql.Date(System.currentTimeMillis());
+		String stmt = "INSERT INTO picture (filename,EVENT_CODE,DATE_UPLOADED) VALUES (?,?,?)";
 		PreparedStatement prepStmt = connection.prepareStatement(stmt);
 		prepStmt.setString(1, fileName);
 		prepStmt.setLong(2, Long.parseLong(code));
+		prepStmt.setDate(3, dateUploaded);
 		prepStmt.execute();
 		
 		File directory = new File("public\\database");
 		directory.mkdir();
 		String uploadFolder = Play.application().configuration().getString("uploadFolder");
 		file.renameTo(new File(uploadFolder, fileName));
+		Picture p = new Picture("/database/"+fileName, fileName, null, dateUploaded);
+		return p;
 	}
 
 }

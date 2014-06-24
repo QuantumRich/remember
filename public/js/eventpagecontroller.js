@@ -2,6 +2,8 @@ $(function() {
 
 	var eventCode = $.url().param('code');
 	
+	//function showPhoto
+	
 	function loadEvent(data) {
 		console.log(data)
 		$(document).on('change', '.btn-file :file', function() {
@@ -11,7 +13,7 @@ $(function() {
 			  input.trigger('fileselect', [numFiles, label]);
 			});
 
-		$(document).ready( function() {
+		$(document).ready( function() { 		//Line not necessary
 		   $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 		       
 			   var data = new FormData();
@@ -30,16 +32,18 @@ $(function() {
 		            input.val(log);
 		            
 		        } else {
-		            if( log ) alert(log);
+		            if( log ) console.log(log);
 		        }
 		        $.ajax({
 		        	  type: "POST",
-//		        	  contentType:'multipart/form-data',
 		        	  url: "/api/upload/" + eventCode,
 		        	  data: data,
 		        	  processData: false,
-		              contentType: false
-		        	  //success: success,
+		              contentType: false,
+		        	  success: function(uploadedPics) {
+		        		  console.log(uploadedPics);
+		        		  
+		        	  }
 		        	  //dataType: dataType
 		        	});
 		        
