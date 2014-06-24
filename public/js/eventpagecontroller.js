@@ -4,6 +4,8 @@ $(function() {
 	
 	function showPhotos(photos) {
 		//var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-image: url(i/photo/{index}.jpg)'></div>";
+		//var temp = "<div class = 'brick'> <img src=  "
+			
 		$.each(photos, function(i,photos) {
 			console.log(photos);
 		})
