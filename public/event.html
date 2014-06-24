@@ -12,43 +12,62 @@
 <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="css/remember.css" rel="stylesheet">
 
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/moment.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
 <script src="js/purl.js"></script>
+<script src="js/freewall.js"></script>
+<script src="js/eventpagecontroller.js"></script>
 
 <!-- <script src="js/upload.js"></script> -->
 
 </head>
 
+	<div class="container" style="margin-top: 20px;">
+		<div class="row">
+
+			<div class="col-lg-6 col-sm-6 col-12">
+				<span class="file-input btn btn-primary btn-file">
+					Browse&hellip; <input type="file" multiple>
+				</span>
+			</div>
+		</div>
+	</div>
+	<style type="text/css">
+		#container {
+			width: 80%;
+			margin: auto;
+		}
+
+		.item {
+			background: rgb(135, 199, 135);
+			width: 150px;	/* 320 */
+			height: 150px;	/* 320 */
+		}
+	</style>
+</head>
 <body>
-<div class="container" style="margin-top: 20px;">
-    <div class="row">
-        
-        <div class="col-lg-6 col-sm-6 col-12">
-            <span class="file-input btn btn-primary btn-file">
-                Browse&hellip; <input type="file" multiple>
-            </span>
-        </div>
-    </div>
-</div>
+	<div id="container">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+	</div>
+	<script>
+		$(function() {
+			var wall = new freewall("#container");
+			wall.fitWidth();
+		});
+	</script>
 
-<!-- <form action="#" enctype="multipart/form-data" method="post">
-	<ul>
-		<li>
-			<label for="name">Name:</label>
-			<input type="text" name="name" id="name" multiple>
-		</li>
 
-		<li>
-			<label for="file_upload">File:</label>
-			<input type="file" name="file_upload" id="file_upload" multiple>
-		</li>
 
-		<li><input class="button green" type="submit" name="submit" value="Submit Content"></li>
-	</ul>
-</form> -->
-<script src="js/eventpagecontroller.js"></script>
 </body>
+
+
 </html>
