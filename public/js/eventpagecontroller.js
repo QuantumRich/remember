@@ -8,19 +8,24 @@ $(function() {
 		console.log(photos);
 		$.each(photos, function(i,photo) {
 			var w = 200 + (200 * Math.random());
-			var temp = "<div class='cell' style='width:"+w+"px; height: 200px; background-image: url("+photo.url+")'>"
+			var temp = "<div class='cell' style='width:"+w+"px; height: 200px;'>" +
 			+"<input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />"
 			"<input name='delete_CheckBox' type='hidden' value='false' />"+"</div>";
+			// background-image: url("+photo.url+")'
+			
+			//"<div class='cell' style='width:"+w+"px; height: 200px;'>" +
+			//"<img src='"+photo.url+"'></div>";
 			html += temp;
 		})
 		$("#freewall").append(html);
 		
 		var wall = new freewall("#freewall");
 		wall.reset({
-			draggable: true,
+			draggable:false,
 			selector: '.cell',
 			animate: true,
-			cellW: 20,
+
+			cellW: 400, //20
 			cellH: 200,
 			onResize: function() {
 				wall.fitWidth();
