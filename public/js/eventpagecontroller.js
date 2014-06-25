@@ -8,7 +8,9 @@ $(function() {
 		console.log(photos);
 		$.each(photos, function(i,photo) {
 			var w = 200 + (200 * Math.random());
-			var temp = "<div class='cell' style='width:"+w+"px; height: 200px; background-image: url("+photo.url+")'></div>";
+			var temp = "<div class='cell' style='width:"+w+"px; height: 200px; background-image: url("+photo.url+")'>"
+			+"<input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />"
+			"<input name='delete_CheckBox' type='hidden' value='false' />"+"</div>";
 			html += temp;
 		})
 		$("#freewall").append(html);

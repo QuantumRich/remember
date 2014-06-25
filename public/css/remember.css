@@ -35,3 +35,33 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
+.cell {
+	display: inline-block;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	background-color: #222;
+	border:1px solid #2cb7fe;text-align:center;
+-webkit-box-shadow:3px 3px 10px #9edeff inset;box-shadow:3px 3px 10px #9edeff inset;
+}
+
+.cell input[type=checkbox] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 2%;
+    height: 2%;
+    -webkit-transition: all 0.5s ease-in-out;
+}
+
+.cell:hover input[type=checkbox],
+.cell input[type=checkbox]:checked {
+    top: 4px;
+    left: 4px;
+    opacity: 1;
+    width: 10%;
+    height: 10%;
+    -webkit-transition: all 0.5s ease-in-out;
+}
