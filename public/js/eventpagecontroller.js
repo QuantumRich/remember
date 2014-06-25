@@ -5,10 +5,29 @@ $(function() {
 	function showPhotos(photos) {
 		//var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-image: url(i/photo/{index}.jpg)'></div>";
 		//var temp = "<div class = 'brick'> <img src=  "
-			
-		$.each(photos, function(i,photos) {
-			console.log(photos);
+		var html = '';
+		console.log(photos);
+		$.each(photos, function(i,photo) {
+			var w = 200 + (200 * Math.random());
+			var temp = "<div class='cell' style='width:"+w+"px; height: 200px; background-image: url("+photo.url+")'></div>";
+			html += temp;
 		})
+		$("#freewall").append(html);
+		
+		var wall = new freewall("#freewall");
+		wall.reset({
+			draggable: true,
+			selector: '.cell',
+			animate: true,
+			cellW: 20,
+			cellH: 200,
+			onResize: function() {
+				wall.fitWidth();
+			}
+		});
+		wall.fitWidth();
+		// for scroll bar appear;
+		$(window).trigger("resize");
 	}
 	
 	function loadEvent(data) {

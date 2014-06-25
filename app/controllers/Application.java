@@ -32,6 +32,7 @@ public class Application extends Controller {
 	}
 
 	public static Result upload(String code) throws SQLException {
+		Connection connection = DB.getConnection();
 		MultipartFormData body = request().body().asMultipartFormData();
 		ArrayList<Picture> pics = new ArrayList<Picture>();
 		for(int i=0; i!=-1 ;i++)
@@ -46,7 +47,7 @@ public class Application extends Controller {
 				{
 					File file = picture.getFile();
 					//System.out.println("File Name: " + fileName + ", " + contentType);
-					Picture p = saveFile(file, fileName, code);	
+					Picture p = saveFile(file, fileName, code, connection);	
 					pics.add(p);
 				}
 				else
@@ -58,9 +59,11 @@ public class Application extends Controller {
 			}
 			else
 			{
+				connection.close();
 				break;
 			}
 		}
+		
 		return ok(Json.toJson(pics));			
 	}
 
@@ -135,13 +138,13 @@ public class Application extends Controller {
 		return ok(Json.toJson(e));
 	}
 	
-	private static Picture saveFile(File file, String origFileName, String code) //file, filename, code
+	private static Picture saveFile(File file, String origFileName, String code, Connection con) //file, filename, code
 			throws SQLException {
-		Connection connection = DB.getConnection();
+		
 		String fileName = UUID.randomUUID().toString()+"-"+origFileName; 
 		java.sql.Date dateUploaded = new java.sql.Date(System.currentTimeMillis());
 		String stmt = "INSERT INTO picture (filename,EVENT_CODE,DATE_UPLOADED) VALUES (?,?,?)";
-		PreparedStatement prepStmt = connection.prepareStatement(stmt);
+		PreparedStatement prepStmt = con.prepareStatement(stmt);
 		prepStmt.setString(1, fileName);
 		prepStmt.setLong(2, Long.parseLong(code));
 		prepStmt.setDate(3, dateUploaded);
