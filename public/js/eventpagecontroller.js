@@ -8,17 +8,23 @@ $(function() {
 		console.log(photos);
 		$.each(photos, function(i,photo) {
 			var w = 200 + (200 * Math.random());
-			var temp = "<div class='cell' style='width:"+w+"px; height: 200px; background-image: url("+photo.url+")'></div>";
+			var temp = "<div class='cell' style='width:"+w+"px; height: 200px;'>" +
+					"<img src='"+photo.url+"' width='100%' height='100%'></div>";
+			
+			// background-image: url("+photo.url+")'
+			
+			//"<div class='cell' style='width:"+w+"px; height: 200px;'>" +
+			//"<img src='"+photo.url+"'></div>";
 			html += temp;
 		})
 		$("#freewall").append(html);
 		
 		var wall = new freewall("#freewall");
 		wall.reset({
-			draggable: true,
+			draggable:false,
 			selector: '.cell',
 			animate: true,
-			cellW: 20,
+			cellW: 400, //20
 			cellH: 200,
 			onResize: function() {
 				wall.fitWidth();
