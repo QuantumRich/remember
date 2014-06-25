@@ -3,8 +3,7 @@ $(function() {
 	var eventCode = $.url().param('code');
 	
 	function showPhotos(photos) {
-		//var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-image: url(i/photo/{index}.jpg)'></div>";
-		//var temp = "<div class = 'brick'> <img src=  "
+		//Flag photos found at http://www.free-country-flags.com/packs/1/flags_style1_large.rar
 		var html = '';
 		console.log(photos);
 		$.each(photos, function(i,photo) {
