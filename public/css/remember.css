@@ -47,22 +47,24 @@ input[readonly] {
 	box-shadow:3px 3px 10px #9edeff inset;
 }
 
-.cell input[type=checkbox] {
-    position: absolute;
+.check{
+    position:absolute;
     top: 0;
     left: 0;
     opacity: 0;
-    width: 2%;
-    height: 2%;
+    width: 2px;
+    height: 2px;
     -webkit-transition: all 0.5s ease-in-out;
+    /* z-index: 11; */
 }
 
-.cell:hover input[type=checkbox],
-.cell input[type=checkbox]:checked {
+.check:hover,
+.check{
     top: 4px;
     left: 4px;
     opacity: 1;
-    width: 8%;
-    height: 8%;
+    width: 8px;
+    height: 8px;
     -webkit-transition: all 0.1s ease-in-out;
+   /*  z-index: 11; */
 }
