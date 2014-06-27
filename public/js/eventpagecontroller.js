@@ -3,14 +3,23 @@ $(function() {
 	var eventCode = $.url().param('code');
 	
 	function showPhotos(photos) {
-		//Flag photos found at http://www.free-country-flags.com/packs/1/flags_style1_large.rar
+		
 		var html = '';
 		console.log(photos);
 		$.each(photos, function(i,photo) {
 			var w = 200 + (200 * Math.random());
-			var temp = "<div class='cell' style='width:"+w+"px; height: 200px;'>" +
-			"<img src='"+photo.url+"'><input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />" +
-			"<input name='delete_CheckBox' type='hidden' value='false' />"+"</div>";
+			
+			var temp =
+				"<a class='magnifiable' href='"+photo.url+"'>" +
+					"<div class='cell' style='width:"+w+"px; height: 200px; background-image: url(\""+photo.url+"\")'>" +
+						"<input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />" +
+						"<input name='delete_CheckBox' type='hidden' value='false' />" +
+					"</div>"
+				+ "</a>";
+			
+			//var temp = "<div class='cell' style='width:"+w+"px; height: 200px;'>" +
+			//"<img src='"+photo.url+"'><input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />" +
+			//"<input name='delete_CheckBox' type='hidden' value='false' />"+"</div>";
 			// background-image: url("+photo.url+")'
 			
 			//"<div class='cell' style='width:"+w+"px; height: 200px;'>" +
@@ -19,13 +28,15 @@ $(function() {
 		})
 		$("#freewall").append(html);
 		
+		$('.magnifiable').magnificPopup({ 
+			type: 'image'
+		});
+		
 		var wall = new freewall("#freewall");
 		wall.reset({
-			draggable:false,
 			selector: '.cell',
 			animate: true,
-
-			cellW: 400, //20
+			cellW: 20,
 			cellH: 200,
 			onResize: function() {
 				wall.fitWidth();
