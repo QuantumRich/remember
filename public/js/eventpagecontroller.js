@@ -8,8 +8,8 @@ $(function() {
 		console.log(photos);
 		$.each(photos, function(i,photo) {
 			var w = 200 + (200 * Math.random());
-			var temp = "<div class='cell' style='width:"+w+"px; height: 200px;'>" +
-			"<img src='"+photo.url+"'><input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />" +
+			var temp = "<div class='cell' style='width: " + w + "; height: 200px;'>" +
+			"<img src='"+photo.url+"' style='height:'><input value='11.jpg' id='delete_CheckBox' name='delete_CheckBox' type='checkbox' />" +
 			"<input name='delete_CheckBox' type='hidden' value='false' />"+"</div>";
 			// background-image: url("+photo.url+")'
 			
@@ -24,8 +24,7 @@ $(function() {
 			draggable:false,
 			selector: '.cell',
 			animate: true,
-
-			cellW: 400, //20
+			cellW: 300, //20
 			cellH: 200,
 			onResize: function() {
 				wall.fitWidth();

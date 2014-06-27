@@ -43,7 +43,8 @@ input[readonly] {
 	position: absolute;
 	background-color: #222;
 	border:1px solid #2cb7fe;text-align:center;
--webkit-box-shadow:3px 3px 10px #9edeff inset;box-shadow:3px 3px 10px #9edeff inset;
+	-webkit-box-shadow:3px 3px 10px #9edeff inset;
+	box-shadow:3px 3px 10px #9edeff inset;
 }
 
 .cell input[type=checkbox] {
