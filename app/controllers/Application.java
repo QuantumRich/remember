@@ -150,9 +150,10 @@ public class Application extends Controller {
 		prepStmt.setDate(3, dateUploaded);
 		prepStmt.execute();
 		
-		File directory = new File("public\\database");
-		directory.mkdir();
 		String uploadFolder = Play.application().configuration().getString("uploadFolder");
+		
+		File directory = new File(uploadFolder);
+		directory.mkdir();	//Make folder at directory location if does not yet exist.
 		file.renameTo(new File(uploadFolder, fileName));
 		Picture p = new Picture("/database/"+fileName, fileName, null, dateUploaded);
 		return p;
