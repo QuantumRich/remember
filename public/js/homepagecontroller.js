@@ -1,5 +1,25 @@
 $(function() {
 	
+	/* navigation bar functions */
+	$('#navHome').click(function(){
+		$('#aboutRemember').hide();
+		$('#homeRemember').show();
+		$('.navLink').removeClass('active');
+		$('#navHome').addClass('active');
+	});
+	$('#navAbout').click(function(){
+		$('#aboutRemember').show();
+		$('#homeRemember').hide();
+		$('.navLink').removeClass('active');
+		$('#navAbout').addClass('active');
+	});
+	$('#navContact').click(function(){
+		//fill in later
+		$('.navLink').removeClass('active');
+		$('#navContact').addClass('active');
+	});
+	
+	
 	$('#datetimepicker1').datetimepicker({
 		language : 'en',
 		format : 'MM/DD/YYYY',

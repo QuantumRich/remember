@@ -38,18 +38,18 @@
 
 				<div class="masthead clearfix">
 					<div class="inner">
-						<h3 class="masthead-brand">Remember</h3>
+						<h3 class="masthead-brand fancyHelvetica">Remember</h3>
 						<ul class="nav masthead-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">About</a></li>
-							<li><a href="#">Contact</a></li>
+							<li id="navHome" class="navLink active"><a>Home</a></li>
+							<li id="navAbout" class="navLink"><a>About</a></li>
+							<li id="navContact" class="navLink"><a>Contact</a></li>
 						</ul>
 					</div>
 				</div>
 				<!-- "Create new event" form -->
 				<div class="row">
 					<div class="col-sm-1"></div>
-					<div class="col-sm-10 main-box">
+					<div id="homeRemember" class="col-sm-10 main-box">
 						<form class="form-horizontal" role="form">
 							<div id="titleInput" class="form-group has-success has-feedback">
 								<input type="text" class="form-control input-lg" id="InputEventTitle" placeholder="Event Title" value="Default Title">
@@ -84,8 +84,8 @@
 				</div>
 
 				<div class="inner cover">
-					<h1 class="cover-heading">Experience your journeys again.</h1>
-					<p class="lead"><i>Remember</i> is a new and innovative way to collect photos, memories, and experiences with others who were with you.
+					<h1 class="cover-heading fancyHelvetica">Experience your journeys again.</h1>
+					<p id="aboutRemember" class="lead" style="display:none"><i>Remember</i> is a new and innovative way to collect photos, memories, and experiences with others who were with you.
 					<i>Remember</i> allows you to collaborate with fellow adventurers and travelers and share each others' photos of the same event.
 					 Experience a 360 degree view of an event, not only from your perspective, but from others' as well.
 					 <br><br>
@@ -95,9 +95,6 @@
 					 <i>Explore nostalgia together.</i>
 					 
 					 
-					</p>
-					<p class="lead">
-						<a href="#" class="btn btn-lg btn-default">Learn more</a>
 					</p>
 				</div>
 
