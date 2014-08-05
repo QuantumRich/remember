@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remember | The 360 Degree Experience</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="css/cover.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+<link href="css/remember.css" rel="stylesheet">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+</head>
+
+<body>
+	<!-- 	<h1>Hello, world!</h1>
+	<form method="post" enctype="multipart/form-data" action="/upload">
+		<div>
+			<label>Image File</label> <input name="picture" type="file" />
+		</div>
+		<div>
+			<input type="submit" value="Submit" />
+		</div>
+	</form> -->
+
+	<div class="site-wrapper">
+
+		<div class="site-wrapper-inner">
+
+			<div class="cover-container">
+
+				<div class="masthead clearfix">
+					<div class="inner">
+						<h3 class="masthead-brand">Remember</h3>
+						<ul class="nav masthead-nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="#">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- "Create new event" form -->
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10 main-box">
+						<form class="form-horizontal" role="form">
+							<div id="titleInput" class="form-group has-success has-feedback">
+								<input type="text" class="form-control input-lg" id="InputEventTitle" placeholder="Event Title" value="Default Title">
+								<span id="titleCheck" class="glyphicon glyphicon-ok form-control-feedback input-lg"></span>
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="InputEventDesc">Event Description</label> 
+								<input type="text" class="form-control input-md"
+									id="InputEventDesc" placeholder="Event Description" value="Default Description">
+							</div>
+							<div class="form-group">
+								<div class='input-group date' id='datetimepicker1'>
+									<!-- TODO: Check for correct dates -->
+									<input id="InputDate" type='text' class="form-control" placeholder="Date of Event" value="05/12/2013"/> 
+									<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+								</div>
+							</div>
+							<!--  <div class="form-group">
+								<label for="exampleInputPassword1">Event Information</label> 
+								<input type="password" class="form-control" id="exampleInputPassword1"
+									placeholder="Password"> 
+							</div>	-->
+							<!-- <div class="form-group">
+								<label for="InputEventLogo">Event Logo</label>
+								<input type="file" id="InputEventLogo">
+								<p class="help-block">Choose a cover photo for the event. </p>
+							</div> -->
+						</form>
+						<button id="createEventButton" class="btn btn-default">Create Event</button>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+
+				<div class="inner cover">
+					<h1 class="cover-heading">Experience your journeys again.</h1>
+					<p class="lead"><i>Remember</i> is a new and innovative way to collect photos, memories, and experiences with others who were with you.
+					<i>Remember</i> allows you to collaborate with fellow adventurers and travelers and share each others' photos of the same event.
+					 Experience a 360 degree view of an event, not only from your perspective, but from others' as well.
+					 
+					 Why keep asking people to take photos of you with your camera? 
+					 Let them take candid photos of you and your loved ones on their camera and share them after the trip. 
+					 With <i>Remember</i>, you'll be able to find all the photos of yourself, a family member, a friend, or an attraction with easy searching. 
+					 <i>Explore nostalgia together.</i>
+					 
+					 
+					</p>
+					<p class="lead">
+						<a href="#" class="btn btn-lg btn-default">Learn more</a>
+					</p>
+				</div>
+
+
+				<div class="mastfoot">
+					<div class="inner">
+						<p>
+							Cover template for <a href="http://getbootstrap.com">Bootstrap</a>,
+							by <a href="https://twitter.com/mdo">@mdo</a>.
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content main-box" style="padding: 3px;">
+				<div class="modal-header" style="border-bottom: 4px solid #e5e5e5;">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Event Created!</h4>
+				</div>
+				<div class="modal-body">
+					<p>Share this code to invite others to collaborate!</p>
+					<div class="row">
+						<input id="event-code-url" type='text' class="col-md-12 input-lg " style="color:#000; text-align:center" disabled/>
+					</div>
+				</div>
+				<div class="modal-footer" style="border-top: 4px solid #e5e5e5;">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="goToEventButton" type="button" class="btn btn-primary" style="background-color: #6EC1FF">Go To Event</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script src="js/homepagecontroller.js"></script>
+</body>
+</html>

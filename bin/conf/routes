@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Assets.at(path="/public", file="index.html")
+
+GET		/event						controllers.Assets.at(path="/public", file="event.html")
+
+# Map static resources from the /public folder to the /assets URL path
+
+GET		/api/event/:code			controllers.Application.getEvent(code)
+
+GET     /*file              		controllers.Assets.at(path="/public", file)
+
+POST	/api/upload/:code			controllers.Application.upload(code)
+
+POST	/event						controllers.Application.createEvent()
