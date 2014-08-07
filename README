@@ -2,3 +2,20 @@ This is your new Play application
 =====================================
 
 This file will be packaged with your application, when using `play dist`.
+
+
+Remember README
+
+Needed downloads:
+
+Play Framework (2.2.3)
+Bootstrap (3.1.1, included)
+Freewall (included)
+jQuery File Upload? (9.5.7, included)
+Apache Tomcat (8.0, to run WAR files)
+Advanced REST Client (Chrome extension)
+H2-Database
+Java JDK? (1.70_60)
+Java JRE? (1.6.0_22)
+Git (probably already downloaded)
+JQuery?
